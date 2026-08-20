@@ -1,14 +1,15 @@
-const express = require('express')
-const cors = require("cors")
-const app = express()
-const PORT = process.env.PORT || 3000
+import express, {type Application} from 'express'
+import dotenv from 'dotenv'
+import connectDB from './src/config/db.js'
+dotenv.config()
+const app:Application = express()
+
+connectDB()
 
 app.use(express.json())
-app.use(cors({
-    origin: "http://localhost:5173",
-    withCredentials: true
-}))
 
+
+const PORT = process.env.PORT ||3000
 app.listen(PORT,()=>{
     console.log("Server is running...")
 })
