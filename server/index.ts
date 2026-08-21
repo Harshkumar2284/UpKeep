@@ -7,6 +7,7 @@ const app:Application = express()
 connectDB()
 
 app.use(express.json())
+app.use('/api/auth', (await import('./src/routes/auth.route.js')).default)
 
 
 const PORT = process.env.PORT ||3000
