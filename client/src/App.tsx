@@ -1,10 +1,13 @@
+import Navbar from "./components/ui/Navbar"
+import Landing from "./pages/Landing"
 
 function App() {
   
 
   return (
     <>
-      <h1 className="text-5xl text-red-500">Hello, Vite!</h1>
+      <Navbar />
+      <Landing />
     </>
   )
 }
