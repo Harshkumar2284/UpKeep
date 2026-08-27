@@ -16,6 +16,7 @@ app.use(cors({
 app.use(cookieParser())
 
 app.use('/api/auth', (await import('./src/routes/auth.route.js')).default)
+app.use('/api/monitor',(await import('./src/routes/monitor.route.js')).default)
 
 
 const PORT = process.env.PORT ||3000

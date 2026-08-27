@@ -25,7 +25,7 @@ export const loginUser = async(email:string, password:string)=>{
     const payload = {
         email:check.email
     }
-    const token = jwt.sign(payload,process.env.JWT_SECRET as String)
+    const token = jwt.sign(payload,process.env.JWT_SECRET as string)
     return token
 }
 

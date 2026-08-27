@@ -1,0 +1,13 @@
+import {type Request,type Response} from 'express'
+import * as monitorService from "../services/monitor.service.js"
+
+export const addUrl = async(req:Request,res:Response)=>{
+
+    try {
+        const {name,url} = req.body
+        const newMonitor = await monitorService.addUrl(name,url)
+        res.status(201).json({success:true,data:newMonitor})
+    } catch (err:any) {
+        res.status(400).json({error:err.message})
+    }
+}

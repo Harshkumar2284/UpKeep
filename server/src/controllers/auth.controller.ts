@@ -14,11 +14,12 @@ export const signUp = async(req: Request,res:Response)=>{
 export const login = async(req:Request,res:Response)=>{
     try {
         const {email, password} = req.body
-        const token = loginUser(email,password)
+        const token = await loginUser(email,password)
         res.cookie('token',token,{
             httpOnly:true,
-            sameSite:true,
-            maxAge:3600000
+            sameSite:'lax',
+            maxAge:3600000,
+            secure:false
         }).status(200).json({success:true})
     } catch (error:any) {
         res.status(401).json({error:error.message})
