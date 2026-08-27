@@ -1,14 +1,26 @@
 import Monitor from "../models/monitor.js"
+import User from "../models/user.js"
+import mongoose from "mongoose"
 
-export const addUrl = async(name:string, url:string)=>{
-    const check = await Monitor.findOne({url})
-    if (check){
+interface UserPayload{
+    email:string
+}
+
+export const addUrl = async(name:string, url:string, user:UserPayload)=>{
+    
+    const email = user.email
+    const check = await User.findOne({email})
+    if(!check){
+        throw new Error("User invalid")
+    }
+    const tenantId = check.tenantId 
+    const website = await Monitor.findOne({url,tenantId})
+    if (website){
         throw new Error("Url has already been added before")
     }
-    const newWebsite = await Monitor.create({name,url})
+    const newWebsite = await Monitor.create({name,url,tenantId})
     return {website: newWebsite}
 }
 
 
 
-// ADD TENANT ID TO THE REQUEST

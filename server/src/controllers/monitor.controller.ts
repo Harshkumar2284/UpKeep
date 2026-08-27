@@ -5,7 +5,8 @@ export const addUrl = async(req:Request,res:Response)=>{
 
     try {
         const {name,url} = req.body
-        const newMonitor = await monitorService.addUrl(name,url)
+        const user = req.user
+        const newMonitor = await monitorService.addUrl(name,url,user)
         res.status(201).json({success:true,data:newMonitor})
     } catch (err:any) {
         res.status(400).json({error:err.message})
