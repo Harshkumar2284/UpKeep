@@ -1,3 +1,4 @@
+import { checkPrime } from "node:crypto"
 import Monitor from "../models/monitor.js"
 import User from "../models/user.js"
 import mongoose from "mongoose"
@@ -24,3 +25,13 @@ export const addUrl = async(name:string, url:string, user:UserPayload)=>{
 
 
 
+export const getUrl = async(user:UserPayload)=>{
+    const email = user.email
+    const userCheck = await User.findOne({email})
+    if(!userCheck){
+        throw new Error("User invalid")
+    }
+    const tenantId = userCheck.tenantId
+    const websites = await Monitor.find({tenantId})
+    return {websites}
+}

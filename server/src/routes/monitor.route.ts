@@ -5,6 +5,6 @@ import * as monitorController from "../controllers/monitor.controller.js"
 
 const router = Router()
 
-router.post("/create",verifyToken,monitorController.addUrl)
-
+router.post("/",verifyToken,monitorController.addUrl)
+router.get("/",verifyToken,monitorController.getUrl)
 export default router

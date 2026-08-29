@@ -12,3 +12,13 @@ export const addUrl = async(req:Request,res:Response)=>{
         res.status(400).json({error:err.message})
     }
 }
+
+export const getUrl = async(req:Request,res:Response)=>{
+    try {
+        const user = req.user
+        const userWebsites = await monitorService.getUrl(user)
+        res.status(200).json({success:true,data:userWebsites})
+    } catch (err:any) {
+        res.status(400).json({error:err.message})
+    }
+}
