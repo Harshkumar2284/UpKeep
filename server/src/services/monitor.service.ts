@@ -35,3 +35,8 @@ export const getUrl = async(user:UserPayload)=>{
     const websites = await Monitor.find({tenantId})
     return {websites}
 }
+
+export const pingUrl = async()=>{
+    const monitors = await Monitor.find({}).select("url tenantId")
+    
+}

@@ -1,11 +1,12 @@
-import Login from "../components/landing/Login";
-import Register from "../components/landing/Register"
+import Cards from "../components/landing/Cards";
+import Hero from "../components/landing/Hero";
+
 
 export default function Landing() {
   return (
-    <div className="w-full flex justify-evenly ">
-      <Login />
-      <Register />
-    </div>
+    <>
+      <Hero />
+      <Cards />
+    </>
   )
 }
